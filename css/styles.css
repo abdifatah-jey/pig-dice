@@ -7,3 +7,6 @@ h1{
   text-align: center;
   text-shadow: 3%;
 }
+.form-group{
+  padding: 3px;
+}
