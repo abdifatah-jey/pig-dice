@@ -1,5 +1,4 @@
-function check() {
-
+//business logic
   var player1 = "";
   var player2 = "";
 
@@ -32,7 +31,7 @@ Player.prototype.hold = function () {
 
 Player.prototype.crownWinner = function (){
   if (this.score >= 100){
-    alert(this.playerName + " Congratulations, You have won")
+    alert(this.playerName + " Congrat man, You have won")
   }
 }
 
@@ -46,7 +45,7 @@ var clearValues = function(){
   $(".player1Name").val("");
   $(".player2Name").val("");
 }
-
+//user interface
 $(document).ready(function(){
   $("button#playGame").click(function(event){
   player1 = new Player(true);
@@ -98,7 +97,7 @@ $(document).ready(function(){
   $("#total-score-1").text(player1.score);
   $("#round-total-1").empty();
   $("#dice-roll-1").empty();
-  player1.crownWinnerCheck();
+  player1.crownWinner();
 });
 
   $("button#holdPlayer2").click(function(event){
@@ -106,7 +105,7 @@ $(document).ready(function(){
     $("#total-score-2").text(player2.score);
     $("#round-total-2").empty();
     $("#dice-roll-2").empty();
-    player2.crownWinnerCheck();
+    player2.crownWinner();
   });
 
 });
