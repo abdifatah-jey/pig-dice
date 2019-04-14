@@ -1,34 +1,37 @@
-#Pig Dice Game
-
+##Pig Dice
+A game of probability meant to make you think whereas having unlimited fan with your pair.
 By abdifatah
 
 ##Description
-This web application allows two players to play a game of Pig Dice.
+#The rules:
 
-##Specs
+For each player's round, one can roll the die as many times as they want.
+The goal is to accumulate as many points as possible, adding up the numbers rolled on the die.
+If a player rolls a 1 on the die, the player's turn is over and any points they have accumulated so far are forfeited.
+A player can also choose to hold (stop rolling the die) if they do not want to take a chance of rolling a 1 and losing all of their points.
+If the player chooses to hold, all of the points rolled during that turn are added to his or her score, and the next player takes a turn.
+The first player to reach a total of 100 points wins the game and the game ends.
+Setup/Installation Requirements
+Internet connection to log into the website.
+enter your gaming details
+Read the rules clearly
+Game like you never did that before!!!
+Program Specifications (examples use only)
+##BDD
 
-Behavior	                       Input                           	Outcome
-Player 1 inputs name and Player 2 inputs name, and clicks start button	Player 1: abdifatah / Player 2: jey / Click START	Goes to game console
-Player 1 clicks ROLL button	Click ROLL button	Dice rolls and number is generated
-If Player 1 rolls any number other than 1, that roll is added to round total	Roll = 2	Round total = 2
-If Player 1 rolls a 1, no score is added and round for Player 1 ends	Roll = 1	Round total = 2 / Total score = 2 / Player 2 begins
-Repeat for Player 2	Roll = 1	Round total = 0 / Total score = 0 / Player 1 begins
-When a player's total score reaches 100 or more, game ends and winner page shows	Player 1 total score = 100	Winner page
+Dice Rolling	outcome Score	Total Score
+5, 4, 2,hold	11	11
+6, hold	6	16
+4, 2, 5, 7, 8,hold	26	42
+3, 4, 1	0	0
+Known Bugs
+There are currently no known bugs.
 
-#Setup/Installation Requirements
-Clone this repository
-Open a HTML file
-Open web browser of choice
+###Technologies Used
+This Game has been built using HTML for content ,CSS for styling ,and javascript for logic and functionality. Git has been used for its version control
 
-##Notes
-#Technologies Used
-HTML
-CSS
-Bootstrap
-JavaScript
-jQuery
+## contact details
+For more information you can reach me ZAAM283@gmail.com
 
-##License
-This software is licensed under the MIT license.
-
-Copyright (c) 2019 abdifatah
+License
+MIT Copyright (c) 2019 abdifatah

@@ -1,111 +1,136 @@
-//business logic
-  var player1 = "";
-  var player2 = "";
-
-var rollRandom = function() {
-  return Math.floor(6*Math.random()) + 1;
-}
-
-function Player (turn){
-  this.roll = 0;
-  this.currentScore = 0;
-  this.score= 0;
-  this.turn = turn;
-  this.playerName;
-}
-
-Player.prototype.scoreone = function () {
-  if (this.roll === 1) {
-    this.currentScore = 0;
-    alert("You scored a 1 " + this.playerName +" Your turn is over pass the dice");
-  } else {
-    this.currentScore += this.roll;
+//Business logic
+function Player(name, score1, score2, score3) {
+    this.playerName = name;
+    this.dieScore = score1;
+    this.turnScore = score2;
+    this.totalScore = score3;
   }
-}
 
-Player.prototype.hold = function () {
-  this.score += this.currentScore;
-  this.currentScore = 0;
-  alert(this.playerName + " , your turn is over pass the dice");
-}
+    var dieScore1 = 0;
+    var turnScore1 = 0;
+    var totalScore1 = 0;
 
-Player.prototype.crownWinner = function (){
-  if (this.score >= 100){
-    alert(this.playerName + " Congrat man, You have won")
-  }
-}
+    var dieScore2 = 0;
+    var turnScore2 = 0;
+    var totalScore2 = 0;
 
-Player.prototype.newGame = function () {
-  this.roll = 0;
-  this.currentScore= 0;
-  this.score = 0;
-  this.playerName= "";
-}
-var clearValues = function(){
-  $(".player1Name").val("");
-  $(".player2Name").val("");
-}
-//user interface
-$(document).ready(function(){
-  $("button#playGame").click(function(event){
-  player1 = new Player(true);
-  player2 = new Player(false);
-  $(".player-space").show();
-  $(".start-game").hide();
+  function rollDice(){
+    return (Math.floor(Math.random()*6)+1);
+  };
 
-  var player1Name = $(".player1Name").val();
-  $("#player1Name").text(player1Name);
+  function score1 (ans) {
+      if (ans === 1) {
+        $("#comment") .text("Oh no! You just rolled a 1, Your total turnscore goes back to zero!");
+        $(document.getElementById("roll1").disabled = true);
+        $(document.getElementById("roll2").disabled = false);
+        $(document.getElementById("Hold2").disabled = false);
+        turnScore1= turnScore1*0;
+        $("#turnScore1").empty();
 
-  var player2Name = $(".player2Name").val();
-  $("#player2Name").text(player2Name);
+      }
+      else {
+        $("#comment") .text("You rolled " + ans + ". Play again or hold!");
+      }
+    };
 
-  player1.playerName = player1Name;
-  player2.playerName = player2Name;
+  function score2 (ans2) {
+      if (ans2 === 1) {
+        $("#comment2") .text("Oh no! You just rolled a 1, Your total score goes back to zero!");
+        $(document.getElementById("roll2").disabled = true);
+        $(document.getElementById("roll1").disabled = false);
+        $(document.getElementById("Hold1").disabled = false);
+        $("#turnScore2").empty();
+          turnScore2= turnScore2*0;
+        $("#turnScore2").empty();
+      }
+      else {
+        $("#comment2") .text("You rolled " + ans2 + ". Play again or hold!");
+      }
+      };
+
+  //front works
+  $(document).ready(function(){
+    $("form#players").submit(function(event){
+      event.preventDefault();
+      $("#gamebody").slideDown();
+      var player1Name = $("input#player1").val();
+      var player2Name = $("input#player2").val();
+      $("#first").text("Hello "+ player1Name);
+      $("#second").text("Hello "+ player2Name);
+    });
+
+    $("#roll1").click(function() {
+      dieScore1= rollDice();
+      turnScore1 += dieScore1;
+      $("#dieScore1").text(dieScore1);
+      $("#turnScore1").text(turnScore1);
+      score1(dieScore1);
+    });
+
+    $("#roll2").click(function(){
+      dieScore2 = rollDice();
+      turnScore2 += dieScore2;
+      $("#dieScore2").text(dieScore2);
+      $("#turnScore2").text(turnScore2);
+      score2(dieScore2)
   });
 
-  $("button#new-game").click(function(event){
-    $(".player-space").hide();
-    clearValues();
-    player1.newGame();
-    player2.newGame();
-    $("#round-total-1").empty();
-    $("#total-score-1").empty();
-    $("die-roll-1").empty();
-    $("#round-total-2").empty();
-    $("#total-score-2").empty();
-    $("#die-roll-2").empty();
+    $("#reset").click(function(){
+      $(document.getElementById("Hold1").disabled = false);
+      $(document.getElementById("roll1").disabled = false);
+      $(document.getElementById("Hold2").disabled = false);
+      $(document.getElementById("roll2").disabled = false);
+      turnScore1= turnScore1*0;
+      turnScore2= turnScore2*0;
+      totalScore1= totalScore1*0;
+      totalScore2= totalScore2*0;
+      $("#dieScore1").empty();
+      $("#dieScore2").empty();
+      $("#comment").empty();
+      $("#comment2").empty();
+      $("#turnScore1").empty();
+      $("#turnScore2").empty();
+      $("#totalScore1").empty();
+      $("#totalScore2").empty();
+      $("#congrats").fadeOut();
+      $("#glowing").fadeIn();
+    });
 
-    $(".start-game").show();
+    $("#Hold1").click(function(){
+      $(document.getElementById("Hold1").disabled = true);
+      $(document.getElementById("roll1").disabled = true);
+      $(document.getElementById("Hold2").disabled = false);
+      $(document.getElementById("roll2").disabled = false);
+      totalScore1 += turnScore1;
+      turnScore1 -= turnScore1;
+      $("#totalScore1").text(totalScore1);
+
+      if (totalScore1 >= 100) {
+        $("#congrats").fadeIn();
+        $("#glowing").fadeOut();
+        $(document.getElementById("Hold2").disabled = true);
+        $(document.getElementById("roll2").disabled = true);
+        $(document.getElementById("Hold1").disabled = true);
+        $(document.getElementById("roll1").disabled = true);
+      }
+    });
+
+    $("#Hold2").click(function(){
+      $(document.getElementById("Hold2").disabled = true);
+      $(document.getElementById("roll2").disabled = true);
+      $(document.getElementById("Hold1").disabled = false);
+      $(document.getElementById("roll1").disabled = false);
+      totalScore2 += turnScore2;
+      turnScore2 -= turnScore2;
+      $("#totalScore2").text(totalScore2);
+
+      if (totalScore2 >= 100) {
+        $("#congrats").fadeIn();
+        $("#glowing").fadeOut();
+        $(document.getElementById("Hold2").disabled = true);
+        $(document.getElementById("roll2").disabled = true);
+        $(document.getElementById("Hold1").disabled = true);
+        $(document.getElementById("roll1").disabled = true);
+      }
+    });
   });
-
-  $("button#rollPlayer1").click(function(event){
-    player1.roll = rollRandom();
-    $("#dice-roll-1").text(player1.roll);
-    player1.scoreone();
-    $("#round-total-1").text(player1.currentScore);
-  });
-
-  $("button#rollPlayer2").click(function(event){
-    player2.roll = rollRandom();
-    $("#dice-roll-2").text(player2.roll);
-    player2.scoreone();
-    $("#round-total-2").text(player2.currentScore);
-  });
-
-  $("button#holdPlayer1").click(function(event){
-  player1.hold();
-  $("#total-score-1").text(player1.score);
-  $("#round-total-1").empty();
-  $("#dice-roll-1").empty();
-  player1.crownWinner();
-});
-
-  $("button#holdPlayer2").click(function(event){
-    player2.hold();
-    $("#total-score-2").text(player2.score);
-    $("#round-total-2").empty();
-    $("#dice-roll-2").empty();
-    player2.crownWinner();
-  });
-
-});

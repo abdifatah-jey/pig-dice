@@ -1,57 +1,89 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="css/styles.css" rel="stylesheet" type="text/css">
-    <script src="js/jquery-3.1.1.js"></script>
-    <script src="js/scripts.js"></script>
-    <title>Pig Dice Game</title>
-  </head>
-  <body>
-   <p><a href="contact.html">CONTACTS</a></p>
-    <div class="start-menu container">
-      <div class="jumbotron">
-        <h1><strong>Let's play Pig Dice! </strong></h1>
-          <form id="player-1">
-            <div class="form-group">
-              <label for="player1Name">Player 1 Name:</label>
-              <input required class="player1Name form-control" type="text">
+    <head>
+        <meta charset="utf-8">
+        <title>Pig Dice</title>
+        <link href ="css/bootstrap.css" rel="stylesheet" type="text/css">
+        <link href ="css/styles.css" rel="stylesheet" type="text/css">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="js/jquery-3.3.1.js"></script>
+        <script src="js/scripts.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="well">
+                <div class="jumbotron">
+                    <div id="header">
+                        <h2 id="font"><strong>PIG DICE</strong></h2>
+
+                        <h3>coo!, enjoy this awesome game</h3>
+                    <br>
+                    <div id="gamebody">
+                        <h1><strong>Rule of the game!</strong></h1>
+                        <h2><strong>gaming guidelines!</strong></h2>
+                        <div class ="midbody">
+                            <p> The required number of players requiredis two</p>
+                            <ul>
+                                <li>For each player's round,one can roll the dice as many times as they want</li>
+                                <li>The goal is to accumulate as many points as possible,adding up the numbers rolled on the die.</li>
+                                <li>If a player rolls a 1 on the die,the player's turn is over and any points they have accumulated get forfeited.</li>
+                                <li>A player can also choose to hold(stop rolling the dice) to avoid the chance of rolling 1 and forfeiting there points</li>
+                                <li>If the player holds the points accumulated are added to their score,and next player takes turn</li>
+                                <li>The first player to reach a total of 100 points wins the game and it Ends!!</li>
+                            </ul>
+                            <br>
+                            <div class="ready">
+                                <p>awesome</p>
+                            </div>
+                        </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div id="first"></div>
+                                    <br>
+                                    <button type="button" class="btn btn-danger" id="roll1">Roll Dice!</button>
+                                    <button type="button" class="btn btn-warning" id="Hold1">Hold!</button>
+                                    <br>
+                                    <br>
+                                    <p><strong>You Rolled:</strong></p>
+                                    <div id="dieScore1">0</div>
+                                    <br>
+                                    <div id="comment"></div>
+                                    <br>
+                                    <p><strong>Your cumulative Score per turn is:</strong></p>
+                                    <div id="turnScore1">0</div>
+                                    <br>
+                                    <p><strong>Your total score is:</strong></p>
+                                    <div id="totalScore1">0</div>
+
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="reset" class="btn btn-info" id="reset">New Game!</button>
+                                </div>
+                                <div class="col-md-5">
+                                    <div id="second"></div>
+                                    <br>
+                                    <button type="button" class="btn btn-danger" id="roll2">Roll Dice!</button>
+                                    <button type="button" class="btn btn-warning" id="Hold2">Hold!</button>
+                                    <br>
+                                    <br>
+                                    <p><strong>You Rolled:</strong></p>
+                                    <div id="dieScore2">0</div>
+                                    <br>
+                                    <div id="comment2"></div>
+                                    <br>
+                                    <p><strong>Your cumulative score per turn is:</strong></p>
+                                    <div id="turnScore2">0</div>
+                                    <br>
+                                    <p><strong>Your total score is:</strong></p>
+                                    <div id="totalScore2">0</div>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </form>
-          <form id="player-2">
-            <div class="form-group">
-              <label for="player2Name">Player 2 Name:</label>
-              <input required class="player2Name form-control" type="text">
-            </div>
-          </form>
-          <button id="start" class="btn-info btn">Start</button>
-      </div>
-    </div>
-
-    <div class="player-console container">
-        <button id="new-game" class="btn-success btn">NEW GAME</button>
-        <div class = "row">
-          <div class="col-md-6">
-            <h2>Player 1: <span id = "player1Name"><span></h2>
-              <button id="player1-roll" class="btn-success btn">Roll</button>
-              <button id="player1-hold" class="btn-success btn">Hold</button>
-            <h2>Dice Roll: <span id="die-roll-1"></span></h2>
-            <p>Round Total: <span id="round-total-1"></span></p>
-            <p>Total Score: <span id="total-score-1"></span></p>
-          </div>
-
-        <div class="col-md-6">
-          <h2>Player 2: <span id = "player2Name"><span></h2>
-            <button id="player2-roll" class="btn-success btn">Roll</button>
-            <button id="player2-hold" class="btn-success btn">Hold</button>
-            <h2>Dice Roll: <span id="die-roll-2"></span></h2>
-            <p>Round Total: <span id="round-total-2"></span></p>
-            <p>Total Score: <span id="total-score-2"></span></p>
-
-
         </div>
-        </div>
-      </div>
-       <footer>&copy; Copyright 2019 HTML.abdifatah-jey</footer>
-  </body>
+    </body>
 </html>
